@@ -1,7 +1,7 @@
 {
   "name": "mummytokencoin-telegram-bot",
-  "version": "2.0.0",
-  "description": "Official Telegram bot for MUMMYTOKENCOIN ($MTC) - LHOPE Memorial NFTs",
+  "version": "1.0.0",
+  "description": "Telegram bot for MUMMYTOKENCOIN",
   "main": "api/webhook.js",
   "dependencies": {}
 }
