@@ -1,13 +1,18 @@
 {
   "functions": {
     "api/webhook.js": {
-      "runtime": "nodejs20.x"
+      "runtime": "nodejs20.x",
+      "maxDuration": 10
     }
   },
   "routes": [
     {
       "src": "/webhook",
       "dest": "/api/webhook"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
     }
   ]
 }
