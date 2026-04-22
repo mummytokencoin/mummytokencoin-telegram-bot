@@ -1,6 +1,0 @@
-name = "mummytokencoin-telegram-bot"
-compatibility_date = "2025-01-01"
-
-[[pages.routes]]
-pattern = "mummytokencoin-telegram-bot.pages.dev"
-custom_domain = false
