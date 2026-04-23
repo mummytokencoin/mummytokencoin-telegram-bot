@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Telegram bot for MUMMYTOKENCOIN",
   "main": "webhook.js",
-  "scripts": {
-    "start": "node webhook.js"
-  },
   "engines": {
     "node": "20.x"
   },
