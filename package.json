@@ -10,7 +10,17 @@
     "node": "20.x"
   },
   "dependencies": {},
-  "keywords": ["telegram", "bot", "mummytokencoin", "blockchain"],
+  "keywords": [
+    "telegram",
+    "bot",
+    "mummytokencoin",
+    "blockchain",
+    "lhope"
+  ],
   "author": "MUMMYTOKENCOIN",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mummytokencoin/mummytokencoin-telegram-bot"
+  }
 }
