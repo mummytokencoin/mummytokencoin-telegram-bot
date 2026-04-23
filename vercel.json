@@ -1,13 +1,14 @@
 {
+  "version": 2,
   "functions": {
     "webhook.js": {
-      "runtime": "nodejs20.x"
+      "runtime": "@vercel/node@2"
     }
   },
   "routes": [
     {
       "src": "/webhook",
-      "dest": "/webhook"
+      "dest": "/webhook.js"
     },
     {
       "src": "/",
