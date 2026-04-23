@@ -4,7 +4,7 @@
   "description": "Telegram bot for MUMMYTOKENCOIN",
   "main": "webhook.js",
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "dependencies": {}
 }
