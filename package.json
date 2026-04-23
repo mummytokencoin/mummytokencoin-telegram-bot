@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "Telegram bot for MUMMYTOKENCOIN",
   "main": "webhook.js",
-  "engines": {
-    "node": "24.x"
+  "scripts": {
+    "start": "node webhook.js"
   },
-  "dependencies": {}
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {},
+  "keywords": ["telegram", "bot", "mummytokencoin", "blockchain"],
+  "author": "MUMMYTOKENCOIN",
+  "license": "MIT"
 }
