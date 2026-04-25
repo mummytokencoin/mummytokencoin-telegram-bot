@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "webhook.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/webhook",
+      "dest": "/webhook.js"
+    }
+  ]
+}
