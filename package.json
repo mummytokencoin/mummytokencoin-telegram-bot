@@ -1,0 +1,6 @@
+{
+  "name": "mummytokencoin-telegram-bot",
+  "version": "1.0.0",
+  "main": "webhook.js",
+  "dependencies": {}
+}
