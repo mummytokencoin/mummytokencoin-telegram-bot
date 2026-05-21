@@ -1,0 +1,15 @@
+{
+  "name": "mummytokencoin-telegram-bot",
+  "version": "1.0.0",
+  "description": "Official MUMMYTOKENCOIN Telegram Bot - LHOPE Memorial NFTs",
+  "main": "api/webhook.js",
+  "scripts": {
+    "start": "node api/webhook.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  },
+  "keywords": ["telegram", "bot", "mummytokencoin", "nft", "blockchain"],
+  "author": "MUMMYTOKENCOIN",
+  "license": "MIT"
+}
