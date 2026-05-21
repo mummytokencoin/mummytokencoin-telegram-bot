@@ -4,11 +4,10 @@
   "description": "Official MUMMYTOKENCOIN Telegram Bot - LHOPE Memorial NFTs",
   "main": "api/webhook.js",
   "engines": {
-    "node": "24.x"
+    "node": "20.x"
   },
   "scripts": {
-    "start": "node api/webhook.js",
-    "build": "echo 'No build step required'"
+    "start": "node api/webhook.js"
   },
   "dependencies": {
     "node-fetch": "^2.7.0"
