@@ -12,14 +12,5 @@
   "dependencies": {
     "node-fetch": "^2.7.0"
   },
-  "keywords": [
-    "telegram",
-    "bot",
-    "mummytokencoin",
-    "nft",
-    "blockchain",
-    "crypto"
-  ],
-  "author": "MUMMYTOKENCOIN",
   "license": "MIT"
 }
