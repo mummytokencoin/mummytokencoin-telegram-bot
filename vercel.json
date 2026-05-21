@@ -5,8 +5,8 @@
       "dest": "/api/$1"
     },
     {
-      "src": "/(.*\\.(png|jpg|css|js))$",
-      "dest": "/$1"
+      "src": "/MUMMY_logo.png",
+      "dest": "/MUMMY_logo.png"
     },
     {
       "src": "/(.*)",
