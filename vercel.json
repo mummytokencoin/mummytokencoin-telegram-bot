@@ -8,6 +8,10 @@
     {
       "src": "/webhook",
       "dest": "/api/webhook"
+    },
+    {
+      "src": "/api/webhook",
+      "dest": "/api/webhook"
     }
   ]
 }
