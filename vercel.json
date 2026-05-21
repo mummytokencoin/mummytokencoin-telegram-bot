@@ -7,11 +7,7 @@
   "routes": [
     {
       "src": "/api/webhook",
-      "dest": "/api/webhook"
-    },
-    {
-      "src": "/api/webhook.js",
-      "dest": "/api/webhook"
+      "dest": "/api/webhook.js"
     },
     {
       "src": "/MUMMY_logo.png",
