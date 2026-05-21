@@ -1,7 +1,6 @@
 // ============================================================
-// MUMMYTOKENCOIN TELEGRAM BOT - COMPLETE PRODUCTION VERSION
+// MUMMYTOKENCOIN TELEGRAM BOT - PRODUCTION VERSION
 // Bot: @MUMMYTOKENCOIN_bot
-// Website: http://mummytokencoin.com
 // ============================================================
 
 const fetch = require('node-fetch');
@@ -49,7 +48,7 @@ const SOCIALS = [
   { name: '📌 Pinterest', url: 'https://pinterest.com/mummytokencoin' }
 ];
 
-// ==================== MESSAGE FUNCTIONS ====================
+// ==================== MESSAGES ====================
 function getStartMessage() {
   return `*✨ MUMMYTOKENCOIN ($MTC) ✨*
 
@@ -91,175 +90,80 @@ Welcome to the official MUMMYTOKENCOIN Telegram Bot.
 *Use the buttons below to explore!*`;
 }
 
-function getTokenomicsMessage() {
-  return `*📊 MUMMYTOKENCOIN TOKENOMICS*
-
-━━━━━━━━━━━━━━━━━━━━
-
-*💰 TOKEN METRICS*
-• Total Supply: 1,000,000,000 MTC
-• Network: BNB Smart Chain (BEP-20)
-• Token Type: Utility & Charity
-• Buy/Sell Tax: 0%
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🔒 SECURITY*
-• Liquidity Locked: 5 years
-• Contract: Verified on BscScan
-• Owner: Renounced after launch
-
-━━━━━━━━━━━━━━━━━━━━
-
-*💛 ALLOCATION*
-• 40% - Public Sale
-• 20% - LHOPE Fund
-• 15% - Marketing
-• 10% - Liquidity
-• 10% - Team (Vested)
-• 5% - Airdrops & Rewards
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🎨 NFT UTILITY*
-• 70% of mint fees → LHOPE Fund
-• 30% → Liver Health Research
-• 0.001 BNB per mint (~$0.60)
-
-━━━━━━━━━━━━━━━━━━━━
-
-*Built in memory. Powered by hope.* 💛`;
-}
-
 function getStepByStepMintInstructions() {
   return `*🎨 HOW TO MINT AN LHOPE MEMORIAL NFT*
 
-*COMPLETE STEP-BY-STEP GUIDE*
+*STEP-BY-STEP GUIDE*
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*📱 STEP 1: PREPARATION*
-• Install MetaMask or Trust Wallet
-• Add BNB Smart Chain network
-• Buy at least 0.005 BNB (gas + mint fee)
+*📱 STEP 1:* Install MetaMask or Trust Wallet
+
+*🌐 STEP 2:* Go to https://mint.mummytokencoin.com
+
+*🔌 STEP 3:* Click "Connect Wallet"
+
+*🖼️ STEP 4:* Upload tribute image (PNG/JPG/GIF, max 10MB)
+
+*✍️ STEP 5:* Enter honored person's name
+
+*💬 STEP 6:* Write memorial message
+
+*🌍 STEP 7:* Select country from dropdown
+
+*🎨 STEP 8:* Click "Mint Memorial NFT"
+
+*✅ STEP 9:* Confirm transaction (0.001 BNB ≈ $0.60)
+
+*🎉 STEP 10:* Your NFT is minted permanently!
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*🌐 STEP 2: ACCESS DAPP*
-• Go to: https://mint.mummytokencoin.com
-• Click "Connect Wallet" (top right)
-• Select your wallet provider
-• Approve connection
+*💛 70% of mint fees go to the LHOPE Fund*
 
-━━━━━━━━━━━━━━━━━━━━
-
-*🖼️ STEP 3: UPLOAD IMAGE*
-• Click "Upload Tribute Image"
-• Select PNG, JPG, or GIF
-• Max file size: 10MB
-• Wait for preview to load
-
-━━━━━━━━━━━━━━━━━━━━
-
-*✍️ STEP 4: FILL DETAILS*
-• Honored Person's Name (required)
-• Memorial Message (max 500 chars)
-• Select Country from dropdown
-• NFT Title (optional, max 100 chars)
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🖼️ STEP 5: PREVIEW & MINT*
-• Review all details
-• Click "Mint Memorial NFT"
-• Confirm transaction in wallet
-• Mint fee: 0.001 BNB (~$0.60)
-
-━━━━━━━━━━━━━━━━━━━━
-
-*✅ STEP 6: CONFIRMATION*
-• Wait for blockchain confirmation
-• Your NFT appears in gallery
-• View on BscScan:
-${CONTRACTS.lhopeNft.bscscan}
-• Share your tribute!
-
-━━━━━━━━━━━━━━━━━━━━
-
-*💛 HOW YOUR MINT HELPS*
-• 70% → LHOPE Fund (liver health)
-• 30% → Research & Operations
-
-*🎁 BONUS:* First 1,000 mints get a FREE $MTC airdrop!`;
+View NFT Contract: ${CONTRACTS.lhopeNft.bscscan}`;
 }
 
 function getStepByStepDonateInstructions() {
   return `*💛 HOW TO DONATE TO LHOPE FUND*
 
-*COMPLETE STEP-BY-STEP GUIDE*
+*STEP-BY-STEP GUIDE*
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*📱 STEP 1: PREPARATION*
-• Install MetaMask or Trust Wallet
-• Add BNB Smart Chain network
-• Fund wallet with BNB or $MTC tokens
+*📱 STEP 1:* Open MetaMask or Trust Wallet
 
-━━━━━━━━━━━━━━━━━━━━
-
-*💰 STEP 2: COPY ADDRESS*
-• LHOPE Fund Wallet:
+*💰 STEP 2:* Copy LHOPE Fund address:
 \`${CONTRACTS.lhopeFund.address}\`
-• Tap to copy or write it down
 
-━━━━━━━━━━━━━━━━━━━━
+*📋 STEP 3:* Click "Send" or "Transfer"
 
-*💸 STEP 3: SEND DONATION*
-• Open your Web3 wallet
-• Click "Send" or "Transfer"
-• Paste the LHOPE Fund address
-• Enter amount (any amount helps!)
-• Choose BNB or $MTC
+*📝 STEP 4:* Paste the address
 
-━━━━━━━━━━━━━━━━━━━━
+*💸 STEP 5:* Enter amount (any amount helps!)
 
-*⚡ STEP 4: SET GAS (BNB ONLY)*
-• Gas limit: 21,000
-• Gas price: Auto or ~5 Gwei
-• Total: ~0.0005 BNB for gas
+*⚡ STEP 6:* Choose BNB or $MTC token
 
-━━━━━━━━━━━━━━━━━━━━
+*✅ STEP 7:* Confirm the transaction
 
-*✅ STEP 5: CONFIRM*
-• Double-check address
-• Click "Confirm" or "Send"
-• Wait for blockchain confirmation
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🔍 STEP 6: VERIFY*
-• View on BscScan:
+*🔍 STEP 8:* Verify on BscScan:
 ${CONTRACTS.lhopeFund.bscscan}
-• Search your transaction hash
-• Save TX ID for records
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*💛 WHERE DONATIONS GO*
+*💛 WHERE DONATIONS GO:*
 • Liver Disease Research
 • Patient Support Programs
-• Medical Equipment for Clinics
-• Public Health Awareness
+• Medical Equipment
 
-*Every donation, no matter how small, saves lives.* 🙏
+*Every donation saves lives!* 🙏
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*🎁 DONOR REWARDS*
+*🎁 DONOR REWARDS:*
 • $10+ → Shoutout in Telegram
 • $50+ → Discord donor role
-• $100+ → Special NFT airdrop
-• $500+ → Name on memorial wall`;
+• $100+ → Special NFT airdrop`;
 }
 
 function getContractsMessage() {
@@ -268,99 +172,47 @@ function getContractsMessage() {
 ━━━━━━━━━━━━━━━━━━━━
 
 💰 *$MTC TOKEN*
-• Address: \`${CONTRACTS.mtc.address}\`
-• BscScan: ${CONTRACTS.mtc.bscscan}
-• Decimals: 18
-• Supply: 1B MTC
+\`${CONTRACTS.mtc.address}\`
+${CONTRACTS.mtc.bscscan}
 
 ━━━━━━━━━━━━━━━━━━━━
 
 🎨 *LHOPE MEMORIAL NFT*
-• Address: \`${CONTRACTS.lhopeNft.address}\`
-• BscScan: ${CONTRACTS.lhopeNft.bscscan}
-• Standard: ERC-721
-• Mint Fee: 0.001 BNB
+\`${CONTRACTS.lhopeNft.address}\`
+${CONTRACTS.lhopeNft.bscscan}
 
 ━━━━━━━━━━━━━━━━━━━━
 
 🏦 *LHOPE FUND WALLET*
-• Address: \`${CONTRACTS.lhopeFund.address}\`
-• BscScan: ${CONTRACTS.lhopeFund.bscscan}
-• Use: Charity & Operations
-• Multi-sig: 3/5 approvals
+\`${CONTRACTS.lhopeFund.address}\`
+${CONTRACTS.lhopeFund.bscscan}
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*⚠️ ALWAYS verify addresses on BscScan before sending!*`;
+*⚠️ Always verify addresses on BscScan before sending!*`;
 }
 
 function getSocialMessage() {
-  let text = `*📱 FOLLOW MUMMYTOKENCOIN*
-
-*Join our community on all platforms!*
-
-━━━━━━━━━━━━━━━━━━━━\n\n`;
+  let text = `*📱 FOLLOW MUMMYTOKENCOIN*\n\n`;
   for (const s of SOCIALS) {
     text += `${s.name}: ${s.url}\n\n`;
   }
-  text += `━━━━━━━━━━━━━━━━━━━━\n\n*All official handles:* @mummytokencoin\n\n*Built in memory. Powered by hope.* 💛`;
+  text += `*All official handles:* @mummytokencoin\n\n*Built in memory. Powered by hope.* 💛`;
   return text;
 }
 
-function getInfoMessage() {
-  return `*ℹ️ ABOUT MUMMYTOKENCOIN ($MTC)*
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🎯 MISSION*
-Transform grief into hope through blockchain technology, supporting liver health awareness worldwide.
-
-━━━━━━━━━━━━━━━━━━━━
-
-*💛 THREE PILLARS*
-
-*LOVE* - Memorial NFTs honoring loved ones lost to liver disease
-
-*HOPE* - LHOPE Fund providing resources for liver health
-
-*BUSINESS* - Sustainable ecosystem with 0% tax token
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🌍 GLOBAL IMPACT*
-• 1.5B people affected by liver disease
-• 2M deaths annually
-• Our mission: Reduce by 25% by 2030
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🔗 OFFICIAL LINKS*
-• Main: http://mummytokencoin.com
-• Mint: https://mint.mummytokencoin.com
-• Telegram: https://t.me/mummytokencoin
-• X: https://x.com/mummytokencoin
-
-━━━━━━━━━━━━━━━━━━━━
-
-*Built in memory. Powered by hope.* 🙏
-
-*Dedicated to liver health worldwide.*`;
-}
-
-// ==================== KEYBOARDS ====================
 function getMainKeyboard() {
   return {
     inline_keyboard: [
       [{ text: "🌐 WEBSITE", callback_data: "website" }, { text: "🎨 MINT NFT", callback_data: "mint" }],
       [{ text: "💰 $MTC", callback_data: "mtc" }, { text: "🏦 LHOPE FUND", callback_data: "lhope" }],
-      [{ text: "📜 CONTRACTS", callback_data: "contracts" }, { text: "📊 TOKENOMICS", callback_data: "tokenomics" }],
-      [{ text: "🎨 HOW TO MINT", callback_data: "howmint" }, { text: "💛 HOW TO DONATE", callback_data: "howdonate" }],
-      [{ text: "📱 SOCIAL MEDIA", callback_data: "social" }, { text: "ℹ️ INFO", callback_data: "info" }]
+      [{ text: "📜 CONTRACTS", callback_data: "contracts" }, { text: "🎨 HOW TO MINT", callback_data: "howmint" }],
+      [{ text: "💛 HOW TO DONATE", callback_data: "howdonate" }, { text: "📱 SOCIAL", callback_data: "social" }],
+      [{ text: "ℹ️ INFO", callback_data: "info" }]
     ]
   };
 }
 
-// ==================== HELPER FUNCTIONS ====================
 async function sendMessage(chatId, text, replyMarkup = null) {
   const payload = {
     chat_id: chatId,
@@ -371,12 +223,11 @@ async function sendMessage(chatId, text, replyMarkup = null) {
   if (replyMarkup) {
     payload.reply_markup = JSON.stringify(replyMarkup);
   }
-  const response = await fetch(`${TELEGRAM_API}/sendMessage`, {
+  await fetch(`${TELEGRAM_API}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   });
-  return response.json();
 }
 
 async function answerCallbackQuery(callbackQueryId) {
@@ -391,26 +242,22 @@ async function handleCallbackQuery(callbackQuery) {
   const chatId = callbackQuery.message.chat.id;
   const data = callbackQuery.data;
   let reply = '';
-  let keyboard = null;
 
   switch(data) {
     case 'website':
-      reply = `🌐 *MUMMYTOKENCOIN MAIN WEBSITE*\n\nhttp://mummytokencoin.com\n\n*Built in memory. Powered by hope.*`;
+      reply = `🌐 http://mummytokencoin.com`;
       break;
     case 'mint':
-      reply = `🎨 *LHOPE MEMORIAL NFT MINTING DAPP*\n\nhttps://mint.mummytokencoin.com\n\nNFT Contract: ${CONTRACTS.lhopeNft.bscscan}\n\nMint fee: 0.001 BNB (~$0.60)`;
+      reply = `🎨 https://mint.mummytokencoin.com\n\nMint fee: 0.001 BNB (~$0.60)`;
       break;
     case 'mtc':
-      reply = `💰 *$MTC TOKEN*\n\nAddress: \`${CONTRACTS.mtc.address}\`\n\nBscScan: ${CONTRACTS.mtc.bscscan}\n\nTotal Supply: 1,000,000,000 MTC\nNetwork: BNB Smart Chain`;
+      reply = `💰 $MTC Token:\n${CONTRACTS.mtc.bscscan}`;
       break;
     case 'lhope':
-      reply = `🏦 *LHOPE FUND WALLET*\n\nAddress: \`${CONTRACTS.lhopeFund.address}\`\n\nBscScan: ${CONTRACTS.lhopeFund.bscscan}\n\nUse: 70% of NFT mints + donations go here to support liver health worldwide.`;
+      reply = `🏦 LHOPE Fund Wallet:\n${CONTRACTS.lhopeFund.bscscan}`;
       break;
     case 'contracts':
       reply = getContractsMessage();
-      break;
-    case 'tokenomics':
-      reply = getTokenomicsMessage();
       break;
     case 'howmint':
       reply = getStepByStepMintInstructions();
@@ -422,45 +269,43 @@ async function handleCallbackQuery(callbackQuery) {
       reply = getSocialMessage();
       break;
     case 'info':
-      reply = getInfoMessage();
+      reply = `*ℹ️ MUMMYTOKENCOIN*\n\nBuilt in memory. Powered by hope.\n\nDedicated to liver health worldwide.\n\nWebsite: http://mummytokencoin.com\nMint: https://mint.mummytokencoin.com`;
       break;
     default:
-      reply = getInfoMessage();
+      reply = getStartMessage();
   }
   
-  await sendMessage(chatId, reply, keyboard);
+  await sendMessage(chatId, reply);
   await answerCallbackQuery(callbackQuery.id);
 }
 
 // ==================== VERCEL HANDLER ====================
 module.exports = async (req, res) => {
-  // Handle GET requests (health check)
+  // Handle GET requests
   if (req.method === 'GET') {
     res.status(200).json({
       status: '✅ MUMMYTOKENCOIN Bot is LIVE!',
       bot: '@MUMMYTOKENCOIN_bot',
-      website: 'http://mummytokencoin.com',
-      mint: 'https://mint.mummytokencoin.com',
-      social: '@mummytokencoin on all platforms'
+      website: 'http://mummytokencoin.com'
     });
     return;
   }
 
-  // Handle POST requests (Telegram webhook)
+  // Handle POST requests
   if (req.method === 'POST') {
     try {
       const update = req.body;
-
-      // Respond IMMEDIATELY to Telegram (before processing)
+      
+      // Respond immediately to Telegram
       res.status(200).json({ ok: true });
 
-      // Process callback queries (button clicks)
+      // Handle callback queries (button clicks)
       if (update.callback_query) {
         await handleCallbackQuery(update.callback_query);
         return;
       }
 
-      // Process text messages
+      // Handle text messages
       if (update.message && update.message.text) {
         const chatId = update.message.chat.id;
         const text = update.message.text.toLowerCase();
@@ -470,10 +315,10 @@ module.exports = async (req, res) => {
             await sendMessage(chatId, getStartMessage(), getMainKeyboard());
             break;
           case '/website':
-            await sendMessage(chatId, `🌐 http://mummytokencoin.com`);
+            await sendMessage(chatId, '🌐 http://mummytokencoin.com');
             break;
           case '/mint':
-            await sendMessage(chatId, `🎨 https://mint.mummytokencoin.com\n\nMint fee: 0.001 BNB`);
+            await sendMessage(chatId, '🎨 https://mint.mummytokencoin.com');
             break;
           case '/mtc':
             await sendMessage(chatId, `💰 $MTC Token:\n${CONTRACTS.mtc.bscscan}`);
@@ -484,9 +329,6 @@ module.exports = async (req, res) => {
           case '/contracts':
             await sendMessage(chatId, getContractsMessage());
             break;
-          case '/tokenomics':
-            await sendMessage(chatId, getTokenomicsMessage());
-            break;
           case '/howmint':
             await sendMessage(chatId, getStepByStepMintInstructions());
             break;
@@ -496,13 +338,8 @@ module.exports = async (req, res) => {
           case '/social':
             await sendMessage(chatId, getSocialMessage());
             break;
-          case '/info':
-            await sendMessage(chatId, getInfoMessage());
-            break;
           default:
-            await sendMessage(chatId, 
-              `*Welcome to MUMMYTOKENCOIN!* 🐪\n\nSend /start to see all features.\n\nBuilt in memory. Powered by hope. 💛`,
-              getMainKeyboard());
+            await sendMessage(chatId, 'Send /start to begin!', getMainKeyboard());
         }
       }
     } catch (error) {
