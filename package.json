@@ -1,9 +1,7 @@
 {
   "name": "mummytokencoin-telegram-bot",
   "version": "1.0.0",
-  "main": "webhook.js",
-  "engines": {
-    "node": "20.x"
-  },
+  "description": "Telegram bot for MUMMYTOKENCOIN",
+  "main": "api/webhook.js",
   "dependencies": {}
 }
