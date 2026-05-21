@@ -1,0 +1,25 @@
+{
+  "functions": {
+    "api/webhook.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/webhook",
+      "dest": "/api/webhook"
+    },
+    {
+      "src": "/api/webhook.js",
+      "dest": "/api/webhook"
+    },
+    {
+      "src": "/MUMMY_logo.png",
+      "dest": "/MUMMY_logo.png"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
