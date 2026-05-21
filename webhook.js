@@ -1,3 +1,15 @@
+// Add this at the very beginning
+module.exports = async (req, res) => {
+  // Send immediate response
+  res.status(200).json({ ok: true });
+  
+  // THEN process the update
+  try {
+    // Your existing code here...
+  } catch (error) {
+    console.error(error);
+  }
+};
 // ============================================================
 // MUMMYTOKENCOIN TELEGRAM BOT - FIXED FOR VERCEL TIMEOUTS
 // Bot Username: @MUMMYTOKENCOIN_bot
