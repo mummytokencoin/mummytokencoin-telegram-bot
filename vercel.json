@@ -1,3 +1,13 @@
 {
-  "rewrites": [{ "source": "/webhook", "destination": "/webhook.js" }]
+  "functions": {
+    "api/webhook.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/webhook",
+      "dest": "/api/webhook"
+    }
+  ]
 }
