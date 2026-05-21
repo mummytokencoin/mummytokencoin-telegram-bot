@@ -1,17 +1,12 @@
 {
-  "functions": {
-    "api/webhook.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "routes": [
     {
-      "src": "/api/webhook",
-      "dest": "/api/webhook.js"
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     },
     {
-      "src": "/MUMMY_logo.png",
-      "dest": "/MUMMY_logo.png"
+      "src": "/(.*\\.(png|jpg|css|js))$",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
