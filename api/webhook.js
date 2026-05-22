@@ -1,29 +1,13 @@
 // ============================================================
-// MUMMYTOKENCOIN TELEGRAM BOT - COMPLETE PRODUCTION VERSION
+// MUMMYTOKENCOIN TELEGRAM BOT - POLLING VERSION (NO WEBHOOK)
+// Works in Pakistan - No proxy needed
 // Bot: @MUMMYTOKENCOIN_bot
-// Website: http://mummytokencoin.com
 // ============================================================
 
 const fetch = require('node-fetch');
 
-// ==================== PROXY SUPPORT FOR PAKISTAN ====================
-// Free MTProxy - Pakistan friendly
-// Source: https://github.com/Grim1313/mtproto-for-telegram
-const HttpsProxyAgent = require('https-proxy-agent');
-const proxyAgent = new HttpsProxyAgent('http://45.112.192.16:8443');
-
-// ==================== CONFIGURATION ====================
 const BOT_TOKEN = '8598861633:AAFqZ2Xm77FSQ6wlxpBJZJ80TpNsb3eAXlo';
 const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
-
-// ==================== TOKENOMICS (FACTUAL ONLY - NO FAKE CLAIMS) ====================
-const TOKENOMICS = {
-  totalSupply: '1,000,000,000 MTC',
-  network: 'BNB Smart Chain (BEP-20)',
-  tax: '0% Buy/Sell Tax',
-  nftAllocation: '70% of NFT mint fees → LHOPE Fund',
-  charity: '30% to Liver Health Research'
-};
 
 // ==================== CONTRACTS ====================
 const CONTRACTS = {
@@ -60,16 +44,12 @@ function getStartMessage() {
 
 *Built in memory. Powered by hope.*
 
-Welcome to the official MUMMYTOKENCOIN Telegram Bot.
-
 ━━━━━━━━━━━━━━━━━━━━
 
 *📊 TOKEN INFO*
-• Total Supply: ${TOKENOMICS.totalSupply}
-• Network: ${TOKENOMICS.network}
-• Tax: ${TOKENOMICS.tax}
-• ${TOKENOMICS.nftAllocation}
-• ${TOKENOMICS.charity}
+• Total Supply: 1,000,000,000 MTC
+• Network: BNB Smart Chain (BEP-20)
+• 70% of NFT mints → LHOPE Fund
 • MTC/WBNB Pair on PancakeSwap
 
 ━━━━━━━━━━━━━━━━━━━━
@@ -96,263 +76,92 @@ Welcome to the official MUMMYTOKENCOIN Telegram Bot.
 *Use the buttons below to explore!*`;
 }
 
-function getTokenomicsMessage() {
-  return `*📊 MUMMYTOKENCOIN TOKENOMICS*
-
-━━━━━━━━━━━━━━━━━━━━
-
-*💰 TOKEN METRICS*
-• Total Supply: 1,000,000,000 MTC
-• Network: BNB Smart Chain (BEP-20)
-• Token Type: Utility & Charity
-• Buy/Sell Tax: 0%
-
-━━━━━━━━━━━━━━━━━━━━
-
-*💛 ALLOCATION*
-• 40% - Public Sale
-• 20% - LHOPE Fund
-• 15% - Marketing
-• 10% - Liquidity
-• 10% - Team (Vested)
-• 5% - Airdrops & Rewards
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🎨 NFT UTILITY*
-• 70% of mint fees → LHOPE Fund
-• 30% → Liver Health Research
-• 0.001 BNB per mint (~$0.60)
-
-━━━━━━━━━━━━━━━━━━━━
-
-*Built in memory. Powered by hope.* 💛`;
-}
-
-function getStepByStepMintInstructions() {
+function getMintInstructions() {
   return `*🎨 HOW TO MINT AN LHOPE MEMORIAL NFT*
 
-*COMPLETE STEP-BY-STEP GUIDE*
+*STEP-BY-STEP GUIDE*
 
-━━━━━━━━━━━━━━━━━━━━
+1️⃣ Go to https://mint.mummytokencoin.com
+2️⃣ Connect your wallet (MetaMask/Trust Wallet)
+3️⃣ Upload a tribute image (PNG/JPG/GIF up to 10MB)
+4️⃣ Enter the honored person's name
+5️⃣ Write a memorial message
+6️⃣ Select your country
+7️⃣ Click "Mint Memorial NFT"
+8️⃣ Confirm transaction (0.001 BNB ≈ $0.60)
 
-*📱 STEP 1: PREPARATION*
-• Install MetaMask or Trust Wallet
-• Add BNB Smart Chain network
-• Buy at least 0.005 BNB (gas + mint fee)
+💛 70% of mint fees go to the LHOPE Fund
 
-━━━━━━━━━━━━━━━━━━━━
-
-*🌐 STEP 2: ACCESS DAPP*
-• Go to: https://mint.mummytokencoin.com
-• Click "Connect Wallet" (top right)
-• Select your wallet provider
-• Approve connection
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🖼️ STEP 3: UPLOAD IMAGE*
-• Click "Upload Tribute Image"
-• Select PNG, JPG, or GIF
-• Max file size: 10MB
-• Wait for preview to load
-
-━━━━━━━━━━━━━━━━━━━━
-
-*✍️ STEP 4: FILL DETAILS*
-• Honored Person's Name (required)
-• Memorial Message (max 500 chars)
-• Select Country from dropdown
-• NFT Title (optional, max 100 chars)
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🖼️ STEP 5: PREVIEW & MINT*
-• Review all details
-• Click "Mint Memorial NFT"
-• Confirm transaction in wallet
-• Mint fee: 0.001 BNB (~$0.60)
-
-━━━━━━━━━━━━━━━━━━━━
-
-*✅ STEP 6: CONFIRMATION*
-• Wait for blockchain confirmation
-• Your NFT appears in gallery
-• View on BscScan:
-${CONTRACTS.lhopeNft.bscscan}
-• Share your tribute!
-
-━━━━━━━━━━━━━━━━━━━━
-
-*💛 HOW YOUR MINT HELPS*
-• 70% → LHOPE Fund (liver health)
-• 30% → Research & Operations
-
-*🎁 BONUS:* First 1,000 mints get a FREE $MTC airdrop!`;
+Contract: ${CONTRACTS.lhopeNft.bscscan}`;
 }
 
-function getStepByStepDonateInstructions() {
+function getDonateInstructions() {
   return `*💛 HOW TO DONATE TO LHOPE FUND*
 
-*COMPLETE STEP-BY-STEP GUIDE*
+*STEP-BY-STEP GUIDE*
 
-━━━━━━━━━━━━━━━━━━━━
-
-*📱 STEP 1: PREPARATION*
-• Install MetaMask or Trust Wallet
-• Add BNB Smart Chain network
-• Fund wallet with BNB or $MTC tokens
-
-━━━━━━━━━━━━━━━━━━━━
-
-*💰 STEP 2: COPY ADDRESS*
-• LHOPE Fund Wallet:
+1️⃣ Copy LHOPE Fund address:
 \`${CONTRACTS.lhopeFund.address}\`
-• Tap to copy or write it down
 
-━━━━━━━━━━━━━━━━━━━━
-
-*💸 STEP 3: SEND DONATION*
-• Open your Web3 wallet
-• Click "Send" or "Transfer"
-• Paste the LHOPE Fund address
-• Enter amount (any amount helps!)
-• Choose BNB or $MTC
-
-━━━━━━━━━━━━━━━━━━━━
-
-*⚡ STEP 4: SET GAS (BNB ONLY)*
-• Gas limit: 21,000
-• Gas price: Auto or ~5 Gwei
-• Total: ~0.0005 BNB for gas
-
-━━━━━━━━━━━━━━━━━━━━
-
-*✅ STEP 5: CONFIRM*
-• Double-check address
-• Click "Confirm" or "Send"
-• Wait for blockchain confirmation
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🔍 STEP 6: VERIFY*
-• View on BscScan:
+2️⃣ Open your Web3 wallet (MetaMask/Trust Wallet)
+3️⃣ Send any amount of BNB or $MTC tokens
+4️⃣ Confirm the transaction
+5️⃣ Verify on BscScan:
 ${CONTRACTS.lhopeFund.bscscan}
-• Search your transaction hash
-• Save TX ID for records
 
-━━━━━━━━━━━━━━━━━━━━
-
-*💛 WHERE DONATIONS GO*
-• Liver Disease Research
-• Patient Support Programs
-• Medical Equipment for Clinics
-• Public Health Awareness
-
-*Every donation, no matter how small, saves lives.* 🙏
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🎁 DONOR REWARDS*
-• $10+ → Shoutout in Telegram
-• $50+ → Discord donor role
-• $100+ → Special NFT airdrop
-• $500+ → Name on memorial wall`;
+*Every donation saves lives.* 💛`;
 }
 
 function getContractsMessage() {
   return `*📜 ALL VERIFIED CONTRACTS*
 
-━━━━━━━━━━━━━━━━━━━━
-
 💰 *$MTC TOKEN*
-• Address: \`${CONTRACTS.mtc.address}\`
-• BscScan: ${CONTRACTS.mtc.bscscan}
-• Decimals: 18
-• Supply: 1B MTC
-
-━━━━━━━━━━━━━━━━━━━━
+\`${CONTRACTS.mtc.address}\`
+${CONTRACTS.mtc.bscscan}
 
 🎨 *LHOPE MEMORIAL NFT*
-• Address: \`${CONTRACTS.lhopeNft.address}\`
-• BscScan: ${CONTRACTS.lhopeNft.bscscan}
-• Standard: ERC-721
-• Mint Fee: 0.001 BNB
-
-━━━━━━━━━━━━━━━━━━━━
+\`${CONTRACTS.lhopeNft.address}\`
+${CONTRACTS.lhopeNft.bscscan}
 
 🏦 *LHOPE FUND WALLET*
-• Address: \`${CONTRACTS.lhopeFund.address}\`
-• BscScan: ${CONTRACTS.lhopeFund.bscscan}
-• Use: Charity & Operations
+\`${CONTRACTS.lhopeFund.address}\`
+${CONTRACTS.lhopeFund.bscscan}
 
-━━━━━━━━━━━━━━━━━━━━
-
-*⚠️ ALWAYS verify addresses on BscScan before sending!*`;
+⚠️ Always verify addresses on BscScan before sending!`;
 }
 
 function getSocialMessage() {
-  let text = `*📱 FOLLOW MUMMYTOKENCOIN*
-
-*Join our community on all platforms!*
-
-━━━━━━━━━━━━━━━━━━━━\n\n`;
+  let text = `*📱 FOLLOW MUMMYTOKENCOIN*\n\n`;
   for (const s of SOCIALS) {
     text += `${s.name}: ${s.url}\n\n`;
   }
-  text += `━━━━━━━━━━━━━━━━━━━━\n\n*All official handles:* @mummytokencoin\n\n*Built in memory. Powered by hope.* 💛`;
+  text += `*All official handles:* @mummytokencoin\n\n*Built in memory. Powered by hope.* 💛`;
   return text;
 }
 
 function getInfoMessage() {
   return `*ℹ️ ABOUT MUMMYTOKENCOIN ($MTC)*
 
-━━━━━━━━━━━━━━━━━━━━
+MUMMYTOKENCOIN transforms grief into hope through blockchain technology, supporting liver health worldwide.
 
-*🎯 MISSION*
-Transform grief into hope through blockchain technology, supporting liver health awareness worldwide.
+*🎯 MISSION:* Transform grief into hope.
 
-━━━━━━━━━━━━━━━━━━━━
+*💛 THREE PILLARS:* Love, Hope, Business.
 
-*💛 THREE PILLARS*
+🌐 http://mummytokencoin.com
+🎨 https://mint.mummytokencoin.com
 
-*LOVE* - Memorial NFTs honoring loved ones lost to liver disease
-
-*HOPE* - LHOPE Fund providing resources for liver health
-
-*BUSINESS* - Sustainable ecosystem with 0% tax token
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🌍 GLOBAL IMPACT*
-• 1.5B people affected by liver disease
-• 2M deaths annually
-• Our mission: Reduce by 25% by 2030
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🔗 OFFICIAL LINKS*
-• Main: http://mummytokencoin.com
-• Mint: https://mint.mummytokencoin.com
-• Telegram: https://t.me/mummytokencoin
-• X: https://x.com/mummytokencoin
-
-━━━━━━━━━━━━━━━━━━━━
-
-*Built in memory. Powered by hope.* 🙏
-
-*Dedicated to liver health worldwide.*`;
+*Built in memory. Powered by hope.* 🙏`;
 }
 
-// ==================== KEYBOARDS ====================
 function getMainKeyboard() {
   return {
     inline_keyboard: [
       [{ text: "🌐 WEBSITE", callback_data: "website" }, { text: "🎨 MINT NFT", callback_data: "mint" }],
       [{ text: "💰 $MTC", callback_data: "mtc" }, { text: "🏦 LHOPE FUND", callback_data: "lhope" }],
-      [{ text: "📜 CONTRACTS", callback_data: "contracts" }, { text: "📊 TOKENOMICS", callback_data: "tokenomics" }],
-      [{ text: "🎨 HOW TO MINT", callback_data: "howmint" }, { text: "💛 HOW TO DONATE", callback_data: "howdonate" }],
-      [{ text: "📱 SOCIAL MEDIA", callback_data: "social" }, { text: "ℹ️ INFO", callback_data: "info" }]
+      [{ text: "📜 CONTRACTS", callback_data: "contracts" }, { text: "🎨 MINT GUIDE", callback_data: "howmint" }],
+      [{ text: "💛 DONATE GUIDE", callback_data: "howdonate" }, { text: "📱 SOCIAL", callback_data: "social" }],
+      [{ text: "ℹ️ INFO", callback_data: "info" }]
     ]
   };
 }
@@ -368,20 +177,17 @@ async function sendMessage(chatId, text, replyMarkup = null) {
   if (replyMarkup) {
     payload.reply_markup = JSON.stringify(replyMarkup);
   }
-  const response = await fetch(`${TELEGRAM_API}/sendMessage`, {
+  await fetch(`${TELEGRAM_API}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    agent: proxyAgent,
     body: JSON.stringify(payload)
   });
-  return response.json();
 }
 
 async function answerCallbackQuery(callbackQueryId) {
   await fetch(`${TELEGRAM_API}/answerCallbackQuery`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    agent: proxyAgent,
     body: JSON.stringify({ callback_query_id: callbackQueryId })
   });
 }
@@ -390,32 +196,28 @@ async function handleCallbackQuery(callbackQuery) {
   const chatId = callbackQuery.message.chat.id;
   const data = callbackQuery.data;
   let reply = '';
-  let keyboard = null;
 
   switch(data) {
     case 'website':
-      reply = `🌐 *MUMMYTOKENCOIN MAIN WEBSITE*\n\nhttp://mummytokencoin.com\n\n*Built in memory. Powered by hope.*`;
+      reply = '🌐 http://mummytokencoin.com';
       break;
     case 'mint':
-      reply = `🎨 *LHOPE MEMORIAL NFT MINTING DAPP*\n\nhttps://mint.mummytokencoin.com\n\nNFT Contract: ${CONTRACTS.lhopeNft.bscscan}\n\nMint fee: 0.001 BNB (~$0.60)`;
+      reply = `🎨 https://mint.mummytokencoin.com\n\nMint fee: 0.001 BNB`;
       break;
     case 'mtc':
-      reply = `💰 *$MTC TOKEN*\n\nAddress: \`${CONTRACTS.mtc.address}\`\n\nBscScan: ${CONTRACTS.mtc.bscscan}\n\nTotal Supply: 1,000,000,000 MTC\nNetwork: BNB Smart Chain`;
+      reply = `💰 $MTC Token:\n${CONTRACTS.mtc.bscscan}`;
       break;
     case 'lhope':
-      reply = `🏦 *LHOPE FUND WALLET*\n\nAddress: \`${CONTRACTS.lhopeFund.address}\`\n\nBscScan: ${CONTRACTS.lhopeFund.bscscan}\n\nUse: 70% of NFT mints + donations go here to support liver health worldwide.`;
+      reply = `🏦 LHOPE Fund:\n${CONTRACTS.lhopeFund.bscscan}`;
       break;
     case 'contracts':
       reply = getContractsMessage();
       break;
-    case 'tokenomics':
-      reply = getTokenomicsMessage();
-      break;
     case 'howmint':
-      reply = getStepByStepMintInstructions();
+      reply = getMintInstructions();
       break;
     case 'howdonate':
-      reply = getStepByStepDonateInstructions();
+      reply = getDonateInstructions();
       break;
     case 'social':
       reply = getSocialMessage();
@@ -426,89 +228,112 @@ async function handleCallbackQuery(callbackQuery) {
     default:
       reply = getInfoMessage();
   }
-  
-  await sendMessage(chatId, reply, keyboard);
+  await sendMessage(chatId, reply);
   await answerCallbackQuery(callbackQuery.id);
 }
 
-// ==================== VERCEL HANDLER ====================
-module.exports = async (req, res) => {
-  // Handle GET requests (health check)
-  if (req.method === 'GET') {
-    res.status(200).json({
-      status: '✅ MUMMYTOKENCOIN Bot is LIVE!',
-      bot: '@MUMMYTOKENCOIN_bot',
-      website: 'http://mummytokencoin.com',
-      mint: 'https://mint.mummytokencoin.com',
-      social: '@mummytokencoin on all platforms'
-    });
-    return;
-  }
+// ==================== POLLING HANDLER (NO WEBHOOK) ====================
+let lastUpdateId = 0;
+let isPolling = false;
 
-  // Handle POST requests (Telegram webhook)
-  if (req.method === 'POST') {
+async function pollForUpdates() {
+  if (isPolling) return;
+  isPolling = true;
+  
+  console.log('🤖 Polling bot started...');
+  
+  while (true) {
     try {
-      const update = req.body;
-
-      // Respond IMMEDIATELY to Telegram (before processing)
-      res.status(200).json({ ok: true });
-
-      // Process callback queries (button clicks)
-      if (update.callback_query) {
-        await handleCallbackQuery(update.callback_query);
-        return;
-      }
-
-      // Process text messages
-      if (update.message && update.message.text) {
-        const chatId = update.message.chat.id;
-        const text = update.message.text.toLowerCase();
-
-        switch(text) {
-          case '/start':
-            await sendMessage(chatId, getStartMessage(), getMainKeyboard());
-            break;
-          case '/website':
-            await sendMessage(chatId, `🌐 http://mummytokencoin.com`);
-            break;
-          case '/mint':
-            await sendMessage(chatId, `🎨 https://mint.mummytokencoin.com\n\nMint fee: 0.001 BNB`);
-            break;
-          case '/mtc':
-            await sendMessage(chatId, `💰 $MTC Token:\n${CONTRACTS.mtc.bscscan}`);
-            break;
-          case '/lhope':
-            await sendMessage(chatId, `🏦 LHOPE Fund:\n${CONTRACTS.lhopeFund.bscscan}`);
-            break;
-          case '/contracts':
-            await sendMessage(chatId, getContractsMessage());
-            break;
-          case '/tokenomics':
-            await sendMessage(chatId, getTokenomicsMessage());
-            break;
-          case '/howmint':
-            await sendMessage(chatId, getStepByStepMintInstructions());
-            break;
-          case '/howdonate':
-            await sendMessage(chatId, getStepByStepDonateInstructions());
-            break;
-          case '/social':
-            await sendMessage(chatId, getSocialMessage());
-            break;
-          case '/info':
-            await sendMessage(chatId, getInfoMessage());
-            break;
-          default:
-            await sendMessage(chatId, 
-              `*Welcome to MUMMYTOKENCOIN!* 🐪\n\nSend /start to see all features.\n\nBuilt in memory. Powered by hope. 💛`,
-              getMainKeyboard());
+      const url = `${TELEGRAM_API}/getUpdates?timeout=30&offset=${lastUpdateId + 1}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      
+      if (data.ok && data.result) {
+        for (const update of data.result) {
+          lastUpdateId = update.update_id;
+          
+          // Handle callback queries (button clicks)
+          if (update.callback_query) {
+            await handleCallbackQuery(update.callback_query);
+          }
+          
+          // Handle text messages
+          if (update.message && update.message.text) {
+            const chatId = update.message.chat.id;
+            const text = update.message.text.toLowerCase();
+            
+            switch(text) {
+              case '/start':
+                await sendMessage(chatId, getStartMessage(), getMainKeyboard());
+                break;
+              case '/website':
+                await sendMessage(chatId, '🌐 http://mummytokencoin.com');
+                break;
+              case '/mint':
+                await sendMessage(chatId, '🎨 https://mint.mummytokencoin.com');
+                break;
+              case '/mtc':
+                await sendMessage(chatId, `💰 $MTC Token:\n${CONTRACTS.mtc.bscscan}`);
+                break;
+              case '/lhope':
+                await sendMessage(chatId, `🏦 LHOPE Fund:\n${CONTRACTS.lhopeFund.bscscan}`);
+                break;
+              case '/contracts':
+                await sendMessage(chatId, getContractsMessage());
+                break;
+              case '/howmint':
+                await sendMessage(chatId, getMintInstructions());
+                break;
+              case '/howdonate':
+                await sendMessage(chatId, getDonateInstructions());
+                break;
+              case '/social':
+                await sendMessage(chatId, getSocialMessage());
+                break;
+              case '/info':
+                await sendMessage(chatId, getInfoMessage());
+                break;
+              default:
+                await sendMessage(chatId, 'Send /start to begin', getMainKeyboard());
+            }
+          }
         }
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Polling error:', error.message);
     }
+    
+    // Wait 1 second before next poll
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+}
+
+// ==================== VERCEL HANDLER ====================
+// This starts the polling when the serverless function wakes up
+let pollingStarted = false;
+
+module.exports = async (req, res) => {
+  // Start polling if not already started
+  if (!pollingStarted) {
+    pollingStarted = true;
+    pollForUpdates().catch(console.error);
+  }
+  
+  // Handle GET requests
+  if (req.method === 'GET') {
+    res.status(200).json({
+      status: '✅ MUMMYTOKENCOIN Bot is LIVE! (Polling Mode)',
+      bot: '@MUMMYTOKENCOIN_bot',
+      note: 'Bot is running in polling mode. It will respond to messages.'
+    });
     return;
   }
-
+  
+  // Handle POST requests (for compatibility)
+  if (req.method === 'POST') {
+    res.status(200).json({ ok: true });
+    return;
+  }
+  
   res.status(405).json({ error: 'Method Not Allowed' });
 };
