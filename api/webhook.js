@@ -10,7 +10,7 @@ const fetch = require('node-fetch');
 // Free MTProxy - Pakistan friendly
 // Source: https://github.com/Grim1313/mtproto-for-telegram
 const HttpsProxyAgent = require('https-proxy-agent');
-const proxyAgent = new HttpsProxyAgent('http://66.135.224.74:8080');
+const proxyAgent = new HttpsProxyAgent('http://45.112.192.16:8443');
 
 // ==================== CONFIGURATION ====================
 const BOT_TOKEN = '8598861633:AAFqZ2Xm77FSQ6wlxpBJZJ80TpNsb3eAXlo';
