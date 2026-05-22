@@ -6,16 +6,21 @@
 
 const fetch = require('node-fetch');
 
+// ==================== PROXY SUPPORT FOR PAKISTAN ====================
+// Free MTProxy - Pakistan friendly
+// Source: https://github.com/Grim1313/mtproto-for-telegram
+const HttpsProxyAgent = require('https-proxy-agent');
+const proxyAgent = new HttpsProxyAgent('http://66.135.224.74:8080');
+
 // ==================== CONFIGURATION ====================
 const BOT_TOKEN = '8598861633:AAFqZ2Xm77FSQ6wlxpBJZJ80TpNsb3eAXlo';
 const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
 
-// ==================== TOKENOMICS ====================
+// ==================== TOKENOMICS (FACTUAL ONLY - NO FAKE CLAIMS) ====================
 const TOKENOMICS = {
   totalSupply: '1,000,000,000 MTC',
   network: 'BNB Smart Chain (BEP-20)',
   tax: '0% Buy/Sell Tax',
-  liquidity: 'Locked for 5 years',
   nftAllocation: '70% of NFT mint fees → LHOPE Fund',
   charity: '30% to Liver Health Research'
 };
@@ -59,13 +64,13 @@ Welcome to the official MUMMYTOKENCOIN Telegram Bot.
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*📊 TOKENOMICS*
+*📊 TOKEN INFO*
 • Total Supply: ${TOKENOMICS.totalSupply}
 • Network: ${TOKENOMICS.network}
 • Tax: ${TOKENOMICS.tax}
-• Liquidity: ${TOKENOMICS.liquidity}
 • ${TOKENOMICS.nftAllocation}
-• Charity: ${TOKENOMICS.charity}
+• ${TOKENOMICS.charity}
+• MTC/WBNB Pair on PancakeSwap
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -101,13 +106,6 @@ function getTokenomicsMessage() {
 • Network: BNB Smart Chain (BEP-20)
 • Token Type: Utility & Charity
 • Buy/Sell Tax: 0%
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🔒 SECURITY*
-• Liquidity Locked: 5 years
-• Contract: Verified on BscScan
-• Owner: Renounced after launch
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -287,7 +285,6 @@ function getContractsMessage() {
 • Address: \`${CONTRACTS.lhopeFund.address}\`
 • BscScan: ${CONTRACTS.lhopeFund.bscscan}
 • Use: Charity & Operations
-• Multi-sig: 3/5 approvals
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -374,6 +371,7 @@ async function sendMessage(chatId, text, replyMarkup = null) {
   const response = await fetch(`${TELEGRAM_API}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    agent: proxyAgent,
     body: JSON.stringify(payload)
   });
   return response.json();
@@ -383,6 +381,7 @@ async function answerCallbackQuery(callbackQueryId) {
   await fetch(`${TELEGRAM_API}/answerCallbackQuery`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    agent: proxyAgent,
     body: JSON.stringify({ callback_query_id: callbackQueryId })
   });
 }
