@@ -1,23 +1,12 @@
 // ============================================================
-// MUMMYTOKENCOIN TELEGRAM BOT - PRODUCTION VERSION
+// MUMMYTOKENCOIN TELEGRAM BOT - CORRECTED VERSION
 // Bot: @MUMMYTOKENCOIN_bot
 // ============================================================
 
 const fetch = require('node-fetch');
 
-// ==================== CONFIGURATION ====================
 const BOT_TOKEN = '8598861633:AAFqZ2Xm77FSQ6wlxpBJZJ80TpNsb3eAXlo';
 const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
-
-// ==================== TOKENOMICS ====================
-const TOKENOMICS = {
-  totalSupply: '1,000,000,000 MTC',
-  network: 'BNB Smart Chain (BEP-20)',
-  tax: '0% Buy/Sell Tax',
-  liquidity: 'Locked for 5 years',
-  nftAllocation: '70% of NFT mint fees → LHOPE Fund',
-  charity: '30% to Liver Health Research'
-};
 
 // ==================== CONTRACTS ====================
 const CONTRACTS = {
@@ -48,7 +37,8 @@ const SOCIALS = [
   { name: '📌 Pinterest', url: 'https://pinterest.com/mummytokencoin' }
 ];
 
-// ==================== MESSAGES ====================
+// ==================== TRUTHFUL MESSAGES ====================
+
 function getStartMessage() {
   return `*✨ MUMMYTOKENCOIN ($MTC) ✨*
 
@@ -58,13 +48,11 @@ Welcome to the official MUMMYTOKENCOIN Telegram Bot.
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*📊 TOKENOMICS*
-• Total Supply: ${TOKENOMICS.totalSupply}
-• Network: ${TOKENOMICS.network}
-• Tax: ${TOKENOMICS.tax}
-• Liquidity: ${TOKENOMICS.liquidity}
-• ${TOKENOMICS.nftAllocation}
-• Charity: ${TOKENOMICS.charity}
+*📊 TOKEN INFO*
+• Total Supply: 1,000,000,000 MTC
+• Network: BNB Smart Chain (BEP-20)
+• MTC/WBNB Pair on PancakeSwap
+• Listed on CoinSniper (Free Listing)
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -84,6 +72,7 @@ Welcome to the official MUMMYTOKENCOIN Telegram Bot.
 *🌐 OFFICIAL LINKS*
 • Main Website: http://mummytokencoin.com
 • NFT Minting: https://mint.mummytokencoin.com
+• PancakeSwap: MTC/WBNB pair
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -156,18 +145,11 @@ ${CONTRACTS.lhopeFund.bscscan}
 • Patient Support Programs
 • Medical Equipment
 
-*Every donation saves lives!* 🙏
-
-━━━━━━━━━━━━━━━━━━━━
-
-*🎁 DONOR REWARDS:*
-• $10+ → Shoutout in Telegram
-• $50+ → Discord donor role
-• $100+ → Special NFT airdrop`;
+*Every donation saves lives!* 🙏`;
 }
 
 function getContractsMessage() {
-  return `*📜 ALL VERIFIED CONTRACTS*
+  return `*📜 VERIFIED CONTRACTS*
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -201,11 +183,44 @@ function getSocialMessage() {
   return text;
 }
 
+function getInfoMessage() {
+  return `*ℹ️ ABOUT MUMMYTOKENCOIN ($MTC)*
+
+━━━━━━━━━━━━━━━━━━━━
+
+*🎯 MISSION*
+Transform grief into hope through blockchain technology, supporting liver health awareness worldwide.
+
+━━━━━━━━━━━━━━━━━━━━
+
+*💛 THREE PILLARS*
+• LOVE - Memorial NFTs honoring loved ones
+• HOPE - LHOPE Fund for liver health
+• BUSINESS - Sustainable ecosystem
+
+━━━━━━━━━━━━━━━━━━━━
+
+*📊 CURRENT STATUS*
+• MTC/WBNB Pair on PancakeSwap
+• Free Listing on CoinSniper
+• NFT Minting Live at mint.mummytokencoin.com
+
+━━━━━━━━━━━━━━━━━━━━
+
+*🔗 OFFICIAL LINKS*
+• Main: http://mummytokencoin.com
+• Mint: https://mint.mummytokencoin.com
+
+━━━━━━━━━━━━━━━━━━━━
+
+*Built in memory. Powered by hope.* 🙏`;
+}
+
 function getMainKeyboard() {
   return {
     inline_keyboard: [
       [{ text: "🌐 WEBSITE", callback_data: "website" }, { text: "🎨 MINT NFT", callback_data: "mint" }],
-      [{ text: "💰 $MTC", callback_data: "mtc" }, { text: "🏦 LHOPE FUND", callback_data: "lhope" }],
+      [{ text: "💰 $MTC TOKEN", callback_data: "mtc" }, { text: "🏦 LHOPE FUND", callback_data: "lhope" }],
       [{ text: "📜 CONTRACTS", callback_data: "contracts" }, { text: "🎨 HOW TO MINT", callback_data: "howmint" }],
       [{ text: "💛 HOW TO DONATE", callback_data: "howdonate" }, { text: "📱 SOCIAL", callback_data: "social" }],
       [{ text: "ℹ️ INFO", callback_data: "info" }]
@@ -251,7 +266,7 @@ async function handleCallbackQuery(callbackQuery) {
       reply = `🎨 https://mint.mummytokencoin.com\n\nMint fee: 0.001 BNB (~$0.60)`;
       break;
     case 'mtc':
-      reply = `💰 $MTC Token:\n${CONTRACTS.mtc.bscscan}`;
+      reply = `💰 $MTC Token:\n${CONTRACTS.mtc.bscscan}\n\nPancakeSwap: MTC/WBNB pair`;
       break;
     case 'lhope':
       reply = `🏦 LHOPE Fund Wallet:\n${CONTRACTS.lhopeFund.bscscan}`;
@@ -269,7 +284,7 @@ async function handleCallbackQuery(callbackQuery) {
       reply = getSocialMessage();
       break;
     case 'info':
-      reply = `*ℹ️ MUMMYTOKENCOIN*\n\nBuilt in memory. Powered by hope.\n\nDedicated to liver health worldwide.\n\nWebsite: http://mummytokencoin.com\nMint: https://mint.mummytokencoin.com`;
+      reply = getInfoMessage();
       break;
     default:
       reply = getStartMessage();
@@ -279,9 +294,7 @@ async function handleCallbackQuery(callbackQuery) {
   await answerCallbackQuery(callbackQuery.id);
 }
 
-// ==================== VERCEL HANDLER ====================
 module.exports = async (req, res) => {
-  // Handle GET requests
   if (req.method === 'GET') {
     res.status(200).json({
       status: '✅ MUMMYTOKENCOIN Bot is LIVE!',
@@ -291,21 +304,16 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Handle POST requests
   if (req.method === 'POST') {
     try {
       const update = req.body;
-      
-      // Respond immediately to Telegram
       res.status(200).json({ ok: true });
 
-      // Handle callback queries (button clicks)
       if (update.callback_query) {
         await handleCallbackQuery(update.callback_query);
         return;
       }
 
-      // Handle text messages
       if (update.message && update.message.text) {
         const chatId = update.message.chat.id;
         const text = update.message.text.toLowerCase();
