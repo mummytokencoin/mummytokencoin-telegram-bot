@@ -1,5 +1,5 @@
 // ============================================================
-// MUMMYTOKENCOIN TELEGRAM BOT - WORKING VERSION (FACTUAL INFO ONLY)
+// MUMMYTOKENCOIN TELEGRAM BOT - WORKING VERSION
 // Bot Username: @MUMMYTOKENCOIN_bot
 // ============================================================
 
@@ -18,7 +18,7 @@ const SOCIALS = [
   { name: '📌 Pinterest', url: 'https://pinterest.com/mummytokencoin' }
 ];
 
-// Contracts (FACTUAL ONLY)
+// Contracts
 const CONTRACTS = {
   mtc: {
     address: '0x17b1FBa5f8110929580a015703F2Ab2a1223F99f',
@@ -55,7 +55,9 @@ function getDonateInstructions() {
 
 *Step 4:* Send any amount of BNB or $MTC tokens to the address above
 
-*Step 5:* Verify your donation on BscScan:
+*Step 5:* 70% of all NFT mint fees also go directly to this wallet
+
+*Step 6:* Verify your donation on BscScan:
 ${CONTRACTS.lhopeFund.bscscan}
 
 *Every contribution, no matter how small, saves lives.* 💛`;
@@ -68,17 +70,23 @@ function getMintInstructions() {
 
 *Step 2:* Connect your Web3 wallet (MetaMask, Trust Wallet)
 
-*Step 3:* Upload a tribute image (PNG, JPG, GIF up to 10MB)
+*Step 3:* Click on BSC Mainnet network
 
-*Step 4:* Enter the honored person's name
+*Step 4:* Upload a tribute image (PNG, JPG, GIF up to 10MB)
 
-*Step 5:* Write a memorial message
+*Step 5:* Enter the honored person's name
 
-*Step 6:* Select your country from the dropdown
+*Step 6:* Write a memorial message
 
-*Step 7:* Click "Mint Memorial NFT"
+*Step 7:* Select your country from the dropdown
 
-*Step 8:* Confirm the transaction (0.001 BNB ≈ $0.60)
+*Step 8:* Enter an NFT title (optional)
+
+*Step 9:* Click "Mint Memorial NFT"
+
+*Step 10:* Confirm the transaction (0.001 BNB ≈ $0.60)
+
+*Step 11:* Your NFT will be minted on blockchain permanently!
 
 *70% of every mint goes to the LHOPE Fund.*`;
 }
@@ -92,11 +100,11 @@ Welcome to the official MUMMYTOKENCOIN Telegram Bot.
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*📊 TOKEN INFO*
+*📊 ECOSYSTEM STATS*
 • Total Supply: 1,000,000,000 MTC
 • Network: BNB Smart Chain (BEP-20)
+• 70% of NFT mints → LHOPE Fund
 • MTC/WBNB Pair on PancakeSwap
-• Free Listing on CoinSniper
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -123,13 +131,13 @@ ${getSocialText()}
 
 ━━━━━━━━━━━━━━━━━━━━
 
-*Use the buttons below to explore:*`;
+*📱 Use the buttons below to explore:*`;
 }
 
 function getInfoMessage() {
   return `*ℹ️ ABOUT MUMMYTOKENCOIN ($MTC)*
 
-MUMMYTOKENCOIN is a blockchain ecosystem for liver health awareness.
+MUMMYTOKENCOIN is a premium blockchain ecosystem for liver health awareness.
 
 *🎯 MISSION:* Transform grief into hope.
 
@@ -138,6 +146,8 @@ MUMMYTOKENCOIN is a blockchain ecosystem for liver health awareness.
 ━━━━━━━━━━━━━━━━━━━━
 
 ${getSocialText()}
+
+━━━━━━━━━━━━━━━━━━━━
 
 *Built in memory. Powered by hope.* 🙏`;
 }
@@ -150,6 +160,15 @@ function getMainKeyboard() {
       [{ text: "📜 CONTRACTS", callback_data: "contracts" }, { text: "💛 DONATE", callback_data: "donate" }],
       [{ text: "📱 SOCIAL", callback_data: "social" }, { text: "ℹ️ INFO", callback_data: "info" }],
       [{ text: "❓ HOW TO MINT", callback_data: "howmint" }, { text: "💝 HOW TO DONATE", callback_data: "howdonate" }]
+    ]
+  };
+}
+
+function getSimpleKeyboard() {
+  return {
+    inline_keyboard: [
+      [{ text: "🌐 WEBSITE", callback_data: "website" }, { text: "🎨 MINT NFT", callback_data: "mint" }],
+      [{ text: "📱 SOCIAL", callback_data: "social" }, { text: "ℹ️ INFO", callback_data: "info" }]
     ]
   };
 }
@@ -275,7 +294,7 @@ module.exports = async (req, res) => {
             await sendMessage(chatId, getSocialText());
             break;
           default:
-            await sendMessage(chatId, `Send /start to begin!`, getMainKeyboard());
+            await sendMessage(chatId, `Send /start to begin!`, getSimpleKeyboard());
         }
       }
     } catch (error) {
