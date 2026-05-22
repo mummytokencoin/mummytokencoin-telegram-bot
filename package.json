@@ -2,13 +2,12 @@
   "name": "mummytokencoin-telegram-bot",
   "version": "1.0.0",
   "description": "Official MUMMYTOKENCOIN Telegram Bot",
-  "main": "api/webhook.js",
+  "main": "polling-bot.js",
   "engines": {
     "node": "20.x"
   },
   "dependencies": {
-    "node-fetch": "^2.7.0",
-    "https-proxy-agent": "^7.0.2"
+    "node-fetch": "^2.7.0"
   },
   "license": "MIT"
 }
