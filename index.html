@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUMMYTOKENCOIN - Official Telegram Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(212,175,55,0.3);
+            backdrop-filter: blur(10px);
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #FFD700, #B8860B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        h1 { 
+            color: #FFD700; 
+            font-size: 2.2rem; 
+            margin-bottom: 10px;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+        }
+        .status { 
+            color: #4CAF50; 
+            font-weight: bold; 
+            margin: 20px 0; 
+            text-align: center;
+        }
+        .bot-link {
+            background: linear-gradient(135deg, #FFD700, #B8860B);
+            color: #000;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin: 20px auto;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .bot-link:hover { transform: translateY(-2px); }
+        .section-title {
+            color: #FFD700;
+            margin: 30px 0 15px;
+            font-size: 1.3rem;
+            border-bottom: 1px solid rgba(255,215,0,0.3);
+            padding-bottom: 8px;
+        }
+        .card {
+            background: rgba(0,0,0,0.5);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #FFD700;
+        }
+        .card code { 
+            color: #FFD700; 
+            font-size: 12px; 
+            font-family: monospace;
+            word-break: break-all;
+        }
+        .card a { 
+            color: #FFD700; 
+            text-decoration: none; 
+        }
+        .card a:hover { text-decoration: underline; }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .btn {
+            background: rgba(255,215,0,0.2);
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #FFD700;
+            color: #000;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #888;
+        }
+        @media (max-width: 600px) { 
+            .container { padding: 20px; } 
+            h1 { font-size: 1.5rem; }
+            .logo { width: 80px; height: 80px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="MUMMY_logo.png" alt="MUMMYTOKENCOIN Logo">
+        </div>
+        
+        <h1>🐪 MUMMYTOKENCOIN</h1>
+        <div class="status">✅ Official Telegram Bot is ONLINE</div>
+        
+        <div style="text-align: center;">
+            <a href="https://t.me/MUMMYTOKENCOIN_bot" class="bot-link">🤖 OPEN BOT ON TELEGRAM</a>
+        </div>
+        
+        <div class="button-group">
+            <a href="http://mummytokencoin.com" class="btn">🌐 MAIN WEBSITE</a>
+            <a href="https://mint.mummytokencoin.com" class="btn">🎨 MINT NFT</a>
+            <a href="https://t.me/mummytokencoin" class="btn">💬 TELEGRAM</a>
+            <a href="https://x.com/mummytokencoin" class="btn">🐦 X (TWITTER)</a>
+        </div>
+
+        <div class="section-title">📊 TOKENOMICS</div>
+        <div class="grid-2">
+            <div class="card">
+                <strong>💰 $MTC Token</strong><br>
+                Total Supply: 1,000,000,000 MTC<br>
+                Network: BNB Smart Chain<br>
+                Tax: 0% Buy/Sell<br>
+                Liquidity: Locked 5 years
+            </div>
+            <div class="card">
+                <strong>💛 Charity Allocation</strong><br>
+                70% of NFT mint fees → LHOPE Fund<br>
+                30% → Liver Health Research<br>
+                Supporting liver health worldwide
+            </div>
+        </div>
+
+        <div class="section-title">🔗 VERIFIED CONTRACTS</div>
+        
+        <div class="card">
+            <strong>💰 $MTC Token</strong><br>
+            <code>0x17b1FBa5f8110929580a015703F2Ab2a1223F99f</code><br>
+            <a href="https://bscscan.com/token/0x17b1FBa5f8110929580a015703F2Ab2a1223F99f" target="_blank">🔍 View on BscScan →</a>
+        </div>
+        
+        <div class="card">
+            <strong>🎨 LHOPE Memorial NFT Contract</strong><br>
+            <code>0x5A3CaDB539b96cC461a5219C956F8106165BC4ae</code><br>
+            <a href="https://bscscan.com/address/0x5A3CaDB539b96cC461a5219C956F8106165BC4ae" target="_blank">🔍 View on BscScan →</a>
+        </div>
+        
+        <div class="card">
+            <strong>🏦 LHOPE Fund Wallet</strong><br>
+            <code>0x31A589c29b3161A09b4fdea9d941c6BA6077f472</code><br>
+            <a href="https://bscscan.com/address/0x31A589c29b3161A09b4fdea9d941c6BA6077f472" target="_blank">🔍 View on BscScan →</a>
+        </div>
+
+        <div class="section-title">🎨 HOW TO MINT AN NFT</div>
+        <div class="card">
+            <strong>Step-by-Step Guide:</strong><br><br>
+            1️⃣ Go to <a href="https://mint.mummytokencoin.com">mint.mummytokencoin.com</a><br>
+            2️⃣ Connect your wallet (MetaMask/Trust Wallet)<br>
+            3️⃣ Upload a tribute image (PNG/JPG/GIF, max 10MB)<br>
+            4️⃣ Enter honored person's name & memorial message<br>
+            5️⃣ Select country from dropdown<br>
+            6️⃣ Click "Mint Memorial NFT"<br>
+            7️⃣ Confirm transaction (0.001 BNB ≈ $0.60)<br>
+            8️⃣ Your NFT is minted permanently on blockchain!<br><br>
+            💛 70% of mint fees go to the LHOPE Fund
+        </div>
+
+        <div class="section-title">💛 HOW TO DONATE</div>
+        <div class="card">
+            <strong>Step-by-Step Guide:</strong><br><br>
+            1️⃣ Copy LHOPE Fund wallet address:<br>
+            <code>0x31A589c29b3161A09b4fdea9d941c6BA6077f472</code><br><br>
+            2️⃣ Open your Web3 wallet (MetaMask/Trust Wallet)<br>
+            3️⃣ Ensure you're on BNB Smart Chain (BEP-20)<br>
+            4️⃣ Send any amount of BNB or $MTC tokens<br>
+            5️⃣ Confirm the transaction<br>
+            6️⃣ Verify on <a href="https://bscscan.com/address/0x31A589c29b3161A09b4fdea9d941c6BA6077f472" target="_blank">BscScan</a><br><br>
+            💛 Every donation, no matter how small, saves lives.
+        </div>
+
+        <div class="section-title">📱 COMMANDS</div>
+        <div class="grid-2">
+            <div class="card">
+                <strong>Basic Commands</strong><br>
+                <code>/start</code> - Welcome & main menu<br>
+                <code>/website</code> - Main website<br>
+                <code>/mint</code> - NFT minting DApp<br>
+                <code>/mtc</code> - $MTC token contract
+            </div>
+            <div class="card">
+                <strong>Advanced Commands</strong><br>
+                <code>/lhope</code> - LHOPE Fund wallet<br>
+                <code>/contracts</code> - All contracts<br>
+                <code>/howmint</code> - Step-by-step mint guide<br>
+                <code>/howdonate</code> - Step-by-step donate guide
+            </div>
+        </div>
+
+        <div class="section-title">🌐 OFFICIAL LINKS</div>
+        <div class="grid-2">
+            <div class="card">
+                <strong>Websites</strong><br>
+                🌐 Main: <a href="http://mummytokencoin.com">mummytokencoin.com</a><br>
+                🎨 Mint: <a href="https://mint.mummytokencoin.com">mint.mummytokencoin.com</a>
+            </div>
+            <div class="card">
+                <strong>Social Media</strong><br>
+                💬 Telegram: <a href="https://t.me/mummytokencoin">@mummytokencoin</a><br>
+                🐦 X: <a href="https://x.com/mummytokencoin">@mummytokencoin</a><br>
+                📸 Instagram: <a href="https://instagram.com/mummytokencoin">@mummytokencoin</a><br>
+                ▶️ YouTube: <a href="https://youtube.com/@mummytokencoin">@mummytokencoin</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            Built in memory. Powered by hope. 💛<br>
+            Dedicated to liver health worldwide.<br>
+            © 2026 MUMMYTOKENCOIN
+        </div>
+    </div>
+</body>
+</html>
